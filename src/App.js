@@ -2,6 +2,14 @@ import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
 
+const data = [
+  {
+    task: 'Clean',
+    id: 0,
+    done: false
+  }
+]
+
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -10,24 +18,24 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos: DataTransferItem,
+      todos: data,
       otherState: "this other state"
     };
     this.toggleDone = this.toggleDone.bind(this);
   }
 
-  toggleDone(itemId) {
-    console.log('toggleDone: ', itemId);
+  toggleDone(taskId) {
+    console.log('toggleDone: ', taskId);
 
     this.setState({
-      todos: this.state.todos.map(item => {
-        if (item.id === itemId){
+      todos: this.state.todos.map(task => {
+        if (task.id === taskId){
         return {
-          ...itemId,
-          done: !item.done
+          ...taskId,
+          done: !task.done
         };
       }
-      return item;
+      return task;
       })
     });
   }
@@ -35,22 +43,22 @@ class App extends React.Component {
   clearDone = () => {
     console.log("clearDone");
     this.setState({
-      todos: this.state.todos.filter(item => {
-        return !item.done;
+      todos: this.state.todos.filter(task => {
+        return !task.done;
       })
     });
   };
 
-  addItem = itemName => {
-    console.log("add item: ", itemName);
+  addtask = taskName => {
+    console.log("add task: ", taskName);
 
     this.setState({
       todos: [
         ...this.state.todos,
         {
-          name: itemName,
+          task: taskName,
           id: Date.now(),
-          purchased: false
+          done: false
         }
       ]
     });
@@ -62,7 +70,7 @@ class App extends React.Component {
         <div className=''>
           <h1>ToDo List</h1>
           <TodoForm
-            addItem={this.addItem}
+            addtask={this.addtask}
           />
         </div>
         <TodoList

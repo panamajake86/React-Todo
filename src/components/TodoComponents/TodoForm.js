@@ -4,22 +4,23 @@ class TodoForm extends React.Component {
     constructor() {
         super();
         this.state = {
-            itemName: ""
+            taskName: ""
         };
     }
 
     handleChanges = e => {
+        console.log("Typing");
         this.setState({
-            itemName: e.target.value
+            taskName: e.target.value
         });
     };
 
     handleSubmit = e => {
         e.preventDefault();
-        if (this.state.itemName !== "") {
-            this.props.addItem(this.state.itemName);
+        if (this.state.taskName !== "") {
+            this.props.addtask(this.state.taskName);
             this.setState({
-                itemName: ""
+                taskName: ""
             });
         }
     };
@@ -28,12 +29,13 @@ class TodoForm extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <input
-                    onChnage={this.handleChanges}
+                    onChange={this.handleChanges}
                     type='text'
-                    name='item'
-                    value={this.state.itemName}
+                    placeholder='Tasks'
+                    name='task'
+                    value={this.state.taskName}
                 />
-                <button>Add</button>
+                <button type='submit'>Add</button>
             </form>
         );
     }
