@@ -1,10 +1,11 @@
 import React from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import TodoForm from './components/TodoComponents/TodoForm';
+import './styles.css';
 
 const data = [
   {
-    task: 'Clean',
+    task: '',
     id: 0,
     done: false
   }
@@ -31,7 +32,7 @@ class App extends React.Component {
       todos: this.state.todos.map(task => {
         if (task.id === taskId){
         return {
-          ...taskId,
+          ...task,
           done: !task.done
         };
       }
